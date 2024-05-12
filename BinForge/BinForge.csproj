@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="BufferReader.*.cs">
-      <DependentUpon>BufferReader.cs</DependentUpon>
+    <Compile Update="SpanReader.*.cs">
+      <DependentUpon>SpanReader.cs</DependentUpon>
     </Compile>
-    <Compile Update="BufferWriter.*.cs">
-      <DependentUpon>BufferWriter.cs</DependentUpon>
+    <Compile Update="SpanWriter.*.cs">
+      <DependentUpon>SpanWriter.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 
