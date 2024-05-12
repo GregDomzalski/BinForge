@@ -6,17 +6,13 @@ namespace BinForge;
 public readonly ref struct ReadOnlyBitChunker
 {
     private const int BitsPerByte = 8;
-
     private readonly ReadOnlySpan<byte> _span;
-    public int Length => _span.Length * BitsPerByte;
-    public int ChunkSize { get; }
-    public int NumberOfChunks { get; }
+    private readonly int _chunkSize;
 
     public ReadOnlyBitChunker(ReadOnlySpan<byte> span, int chunkSize)
     {
         _span = span;
-        ChunkSize = chunkSize;
-        NumberOfChunks = (int)Math.Ceiling((double)Length / ChunkSize);
+        _chunkSize = chunkSize;
     }
 
     public Enumerator GetEnumerator() =>
@@ -27,12 +23,7 @@ public readonly ref struct ReadOnlyBitChunker
         private readonly ReadOnlyBitChunker _chunker;
 
         private int _index;
-
         private int _current;
-        private int _bitsGathered;
-
-        private byte _remainder;
-        private int _bitsRemaining;
 
         internal Enumerator(ReadOnlyBitChunker chunker)
         {
@@ -48,7 +39,7 @@ public readonly ref struct ReadOnlyBitChunker
                 return false;
             }
 
-            for (int i = 0; i < _chunker.ChunkSize; i++)
+            for (int i = 0; i < _chunker._chunkSize; i++)
             {
                 _current <<= 1;
 
@@ -59,7 +50,7 @@ public readonly ref struct ReadOnlyBitChunker
 
                 if (++_index / BitsPerByte < _chunker._span.Length) { continue; }
 
-                _current <<= _chunker.ChunkSize - i - 1;
+                _current <<= _chunker._chunkSize - i - 1;
                 break;
             }
 
