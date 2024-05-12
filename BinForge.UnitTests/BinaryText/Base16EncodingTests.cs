@@ -10,13 +10,13 @@ public class Base16EncodingTests
 {
     public static IEnumerable<object[]> TestData => new List<object[]>
     {
-        new object[] { "", new byte[0] },
-        new object[] { "0F", new byte[] { 0x0F } },
-        new object[] { "0F30", new byte[] { 0x0F, 0x30 } },
-        new object[] { "0F3030", new byte[] { 0x0F, 0x30, 0x30 } },
-        new object[] { "0F303062", new byte[] { 0x0F, 0x30, 0x30, 0x62 } },
-        new object[] { "0F30306261", new byte[] { 0x0F, 0x30, 0x30, 0x62, 0x61 } },
-        new object[] { "0F3030626172", new byte[] { 0x0F, 0x30, 0x30, 0x62, 0x61, 0x72 } },
+        new object[] { "", Array.Empty<byte>() },
+        new object[] { "66", "f"u8.ToArray() },
+        new object[] { "666F", "fo"u8.ToArray() },
+        new object[] { "666F6F", "foo"u8.ToArray() },
+        new object[] { "666F6F62", "foob"u8.ToArray() },
+        new object[] { "666F6F6261", "fooba"u8.ToArray() },
+        new object[] { "666F6F626172", "foobar"u8.ToArray() },
     };
 
     public static IEnumerable<object[]> CaseTestData => new List<object[]>
