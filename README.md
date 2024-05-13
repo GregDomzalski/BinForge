@@ -1,3 +1,7 @@
+<div align="center">
+    <img alt="BinForge logo" height="200px" src="./logo.png" />
+</div>
+
 # BinForge
 
 A comprehensive .NET library for bits and bytes. Supports efficient buffer manipulation, encoding and decoding various
