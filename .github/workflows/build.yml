@@ -1,0 +1,29 @@
+name: build.yml
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build BinForge
+        run: dotnet build --no-restore --nologo
+
+      - name: Test BinForge
+        run: dotnet test --no-build --nologo --verbosity normal
