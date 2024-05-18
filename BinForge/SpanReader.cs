@@ -17,4 +17,17 @@ public ref partial struct SpanReader
 
     public void Skip(int count) =>
         Position += count;
+
+    public readonly byte PeekByte() =>
+        Span[Position];
+
+    public readonly byte PeekByte(int offset) =>
+        Span[Position + offset];
+
+    public readonly ReadOnlySpan<byte> PeekBytes(int length) =>
+        Span[..length];
+
+    public readonly ReadOnlySpan<byte> PeekBytes(int length, int offset) =>
+        Span.Slice(offset, length);
+
 }
