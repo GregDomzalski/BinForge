@@ -2,15 +2,15 @@ namespace BinForge;
 
 public partial struct SpanWriter
 {
-    public void WriteByte(Span<byte> buffer, byte value)
+    public void WriteByte(byte value)
     {
-        buffer[Position] = value;
+        Span[Position] = value;
         Position++;
     }
 
-    public void WriteSByte(Span<byte> buffer, sbyte value)
+    public void WriteSByte(sbyte value)
     {
-        buffer[Position] = (byte)value;
+        Span[Position] = (byte)value;
         Position++;
     }
 }

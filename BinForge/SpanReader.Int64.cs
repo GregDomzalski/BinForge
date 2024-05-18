@@ -4,18 +4,18 @@ namespace BinForge;
 
 public partial struct SpanReader
 {
-    public long ReadInt64BigEndian(ReadOnlySpan<byte> data)
+    public long ReadInt64BigEndian()
     {
         const int size = sizeof(long);
-        long temp = BinaryPrimitives.ReadInt64BigEndian(data.Slice(Position, size));
+        long temp = BinaryPrimitives.ReadInt64BigEndian(Span.Slice(Position, size));
         Position += size;
         return temp;
     }
 
-    public long ReadInt64LittleEndian(ReadOnlySpan<byte> data)
+    public long ReadInt64LittleEndian()
     {
         const int size = sizeof(long);
-        long temp = BinaryPrimitives.ReadInt64LittleEndian(data.Slice(Position, size));
+        long temp = BinaryPrimitives.ReadInt64LittleEndian(Span.Slice(Position, size));
         Position += size;
         return temp;
     }

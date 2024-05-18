@@ -4,17 +4,17 @@ namespace BinForge;
 
 public partial struct SpanWriter
 {
-    public void WriteSingleBigEndian(Span<byte> buffer, float value)
+    public void WriteSingleBigEndian(float value)
     {
         const int size = sizeof(float);
-        BinaryPrimitives.WriteSingleBigEndian(buffer.Slice(Position, size), value);
+        BinaryPrimitives.WriteSingleBigEndian(Span.Slice(Position, size), value);
         Position += size;
     }
 
-    public void WriteSingleLittleEndian(Span<byte> buffer, float value)
+    public void WriteSingleLittleEndian(float value)
     {
         const int size = sizeof(float);
-        BinaryPrimitives.WriteSingleLittleEndian(buffer.Slice(Position, size), value);
+        BinaryPrimitives.WriteSingleLittleEndian(Span.Slice(Position, size), value);
         Position += size;
     }
 }
