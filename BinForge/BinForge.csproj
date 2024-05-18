@@ -4,7 +4,35 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet properties -->
+    <PackageId>BinForge</PackageId>
+    <PackageVersion>0.1.0</PackageVersion>
+    <Description>
+      BinForge is a comprehensive .NET library for bits and bytes. Supports efficient buffer manipulation, encoding and
+      decoding various formats, and much more!
+    </Description>
+    <Authors>Greg Domzalski</Authors>
+    <Company>GregDom LLC</Company>
+
+    <!-- Packaging -->
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <!-- Analyzer settings -->
+    <AnalysisLevel>8.0-All</AnalysisLevel>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    
   </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0"/>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="SpanReader.*.cs">
