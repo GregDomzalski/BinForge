@@ -21,6 +21,8 @@
     <!-- Packaging -->
     <EnablePackageValidation>true</EnablePackageValidation>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
     <!-- Analyzer settings -->
     <AnalysisLevel>8.0-All</AnalysisLevel>

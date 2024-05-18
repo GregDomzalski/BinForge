@@ -9,6 +9,10 @@ on:
 jobs:
   release_build:
     runs-on: ubuntu-latest
+
+    env:
+      NUGET_PUBLISH_DIR: ${{ github.workspace }}/nuget
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,7 +23,9 @@ jobs:
           global-json-file: global.json
 
       - name: Build and pack
-        run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+        run: dotnet pack --configuration Release --output ${{ env.NUGET_PUBLISH_DIR }}
 
       - name: Upload to NuGet.org
-        run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+        run: |
+          dotnet nuget push ${{ env.NUGET_PUBLISH_DIR }}/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push ${{ env.NUGET_PUBLISH_DIR }}/*.snupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
