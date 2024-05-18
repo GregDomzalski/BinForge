@@ -26,6 +26,4 @@ jobs:
         run: dotnet pack --configuration Release --output ${{ env.NUGET_PUBLISH_DIR }}
 
       - name: Upload to NuGet.org
-        run: |
-          dotnet nuget push ${{ env.NUGET_PUBLISH_DIR }}/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push ${{ env.NUGET_PUBLISH_DIR }}/*.snupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+        run:  dotnet nuget push ${{ env.NUGET_PUBLISH_DIR }}/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
