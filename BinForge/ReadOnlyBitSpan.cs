@@ -1,6 +1,8 @@
 // Copyright (c) GregDom LLC. All Rights Reserved.
 // This file is licensed for use under the MIT license.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace BinForge;
 
 public readonly ref struct ReadOnlyBitChunker
@@ -18,6 +20,12 @@ public readonly ref struct ReadOnlyBitChunker
     public Enumerator GetEnumerator() =>
         new(this);
 
+    [SuppressMessage(
+        "Design",
+        "CA1034",
+        Justification =
+            "Must be public as ref structs can't inherit from interfaces. Makes sense to keep enumerator within the "
+          + "enumerable type.")]
     public ref struct Enumerator
     {
         private readonly ReadOnlyBitChunker _chunker;
@@ -34,10 +42,7 @@ public readonly ref struct ReadOnlyBitChunker
         {
             _current = 0;
 
-            if (_index >= _chunker._span.Length * BitsPerByte)
-            {
-                return false;
-            }
+            if (_index >= _chunker._span.Length * BitsPerByte) { return false; }
 
             for (int i = 0; i < _chunker._chunkSize; i++)
             {
@@ -51,6 +56,7 @@ public readonly ref struct ReadOnlyBitChunker
                 if (++_index / BitsPerByte < _chunker._span.Length) { continue; }
 
                 _current <<= _chunker._chunkSize - i - 1;
+
                 break;
             }
 

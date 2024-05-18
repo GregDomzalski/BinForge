@@ -1,6 +1,8 @@
 // Copyright (c) GregDom LLC. All Rights Reserved.
 // This file is licensed for use under the MIT license.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace BinForge;
 
 public ref struct ReadOnlySpanByteChunker<T>
@@ -17,6 +19,12 @@ public ref struct ReadOnlySpanByteChunker<T>
     public Enumerator GetEnumerator() =>
         new(this);
 
+    [SuppressMessage(
+        "Design",
+        "CA1034",
+        Justification =
+            "Must be public as ref structs can't inherit from interfaces. Makes sense to keep enumerator within the "
+          + "enumerable type.")]
     public ref struct Enumerator
     {
         private ReadOnlySpanByteChunker<T> _chunker;

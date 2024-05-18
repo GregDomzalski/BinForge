@@ -3,7 +3,7 @@
 
 namespace BinForge.BinaryText;
 
-public static class BinaryText
+public static class BaseEncoding
 {
     public static Base16Encoding Base16 => new();
     public static Base16Encoding ModHex => new(Base16Encoding.ModHexAlphabet);

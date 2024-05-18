@@ -38,7 +38,7 @@ public class Base32Encoding : IBaseDecoder, IBaseEncoder
         byte bits = 8;
         int index = 0;
 
-        foreach (int block in encoding.Select(c => Alphabet.IndexOf(c)))
+        foreach (int block in encoding.Select(c => Alphabet.IndexOf(c, StringComparison.Ordinal)))
         {
             int mask;
 

@@ -35,8 +35,8 @@ public class Base16Encoding : IBaseDecoder, IBaseEncoder
 
         for (int i = 0; i < GetDecodedLength(encoding); i++)
         {
-            decoded[i] = (byte)(Alphabet.IndexOf(encoding[i * 2]) << 4);
-            decoded[i] |= (byte)(Alphabet.IndexOf(encoding[(i * 2) + 1]) & 0xF);
+            decoded[i] = (byte)(Alphabet.IndexOf(encoding[i * 2], StringComparison.Ordinal) << 4);
+            decoded[i] |= (byte)(Alphabet.IndexOf(encoding[(i * 2) + 1], StringComparison.Ordinal) & 0xF);
         }
 
         return decoded;
