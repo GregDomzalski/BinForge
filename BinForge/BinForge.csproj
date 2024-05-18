@@ -14,6 +14,7 @@
     </Description>
     <Authors>Greg Domzalski</Authors>
     <Company>GregDom LLC</Company>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
 
     <!-- Packaging -->
     <EnablePackageValidation>true</EnablePackageValidation>
@@ -35,6 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="../NuGet/readme.md" Pack="true" PackagePath="\" />
+
     <Compile Update="SpanReader.*.cs">
       <DependentUpon>SpanReader.cs</DependentUpon>
     </Compile>
