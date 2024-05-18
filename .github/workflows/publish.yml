@@ -1,0 +1,25 @@
+name: Publish to NuGet.org
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - published
+
+jobs:
+  release_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build and pack
+        run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+
+      - name: Upload to NuGet.org
+        run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
